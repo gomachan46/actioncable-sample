@@ -12,6 +12,10 @@ class OtogeChannel < ApplicationCable::Channel
     ActionCable.server.broadcast "otoge_channel", result: result(data["judge"])
   end
 
+  def finish(data)
+    ActionCable.server.broadcast "otoge_channel", finish: data["score"] >= 10000 ? "success" : "failure"
+  end
+
   private
 
   def result(judge)

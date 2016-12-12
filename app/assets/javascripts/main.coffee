@@ -53,7 +53,7 @@ class @Game
     _game.rootScene.addChild(note)
     note.tl.setTimeBased()
     note.tl.moveY(380, (_timing[number] - _yt.getCurrentTime()) * 1000)
-    note.addEventListener "touchstart", (e)->
+    note.addEventListener "touchstart", (e) ->
       @clearTime = _yt.getCurrentTime()
       @clear = true
     note.addEventListener "enterframe", ->
@@ -73,8 +73,9 @@ class @Game
         _generateNote(_timingIndex)
         _timingIndex++
       if _yt.getCurrentTime() >= _endTime
-        _yt.setVolume(_youtube.getVolume() - 1)
+        _yt.setVolume(_yt.getVolume() - 1)
         if _yt.getVolume() <= 0
+          App.otoge.finish()
           _yt.stop()
           _status = "end"
 
@@ -88,6 +89,7 @@ class @Yt
     firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
   play : -> _player.playVideo()
+  stop : -> _player.stopVideo()
   getCurrentTime : -> _player.getCurrentTime()
   setVolume : (volume)-> _player.setVolume(volume)
   getVolume : -> _player.getVolume()
