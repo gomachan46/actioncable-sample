@@ -8,8 +8,7 @@ App.sample = App.cable.subscriptions.create "SampleChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     console.log data
-    hoge_point = $('<h1>' + data.judge.judge + '</h1>')
-    $('body').append hoge_point
+    $('#judge').html(data.judge.judge)
 
   hoge: (judge) ->
     @perform 'hoge', judge: judge
