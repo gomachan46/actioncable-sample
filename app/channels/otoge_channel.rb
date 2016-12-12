@@ -8,7 +8,43 @@ class OtogeChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def judge(judge)
-    ActionCable.server.broadcast "otoge_channel", judge: judge
+  def judge(data)
+    ActionCable.server.broadcast "otoge_channel", result: result(data["judge"])
+  end
+
+  private
+
+  def result(judge)
+    {
+        judge: judge,
+        score: score(judge),
+        continuous_combo: continuous_combo?(judge)
+    }
+  end
+
+  def score(judge)
+    case judge
+      when "COOL"
+        300
+      when "GOOD"
+        100
+      when "BAD"
+        0
+      else
+        0
+    end
+  end
+
+  def continuous_combo?(judge)
+    case judge
+      when "COOL"
+        true
+      when "GOOD"
+        true
+      when "BAD"
+        false
+      else
+        false
+    end
   end
 end
