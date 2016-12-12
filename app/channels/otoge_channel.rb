@@ -8,7 +8,7 @@ class OtogeChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def hoge(judge)
+  def judge(judge)
     ActionCable.server.broadcast "otoge_channel", judge: judge
   end
 end

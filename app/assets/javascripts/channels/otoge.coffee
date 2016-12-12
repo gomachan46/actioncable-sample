@@ -10,5 +10,5 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
     console.log data
     $('#judge').html(data.judge.judge)
 
-  hoge: (judge) ->
-    @perform 'hoge', judge: judge
+  judge: (judge) ->
+    @perform 'judge', judge: judge
