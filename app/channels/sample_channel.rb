@@ -8,7 +8,7 @@ class SampleChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def hoge(position)
-    ActionCable.server.broadcast "sample_channel", sample: position
+  def hoge(judge)
+    ActionCable.server.broadcast "sample_channel", judge: judge
   end
 end
