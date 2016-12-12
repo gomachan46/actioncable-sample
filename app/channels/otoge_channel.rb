@@ -28,8 +28,6 @@ class OtogeChannel < ApplicationCable::Channel
         300
       when "GOOD"
         100
-      when "BAD"
-        0
       else
         0
     end
@@ -41,8 +39,6 @@ class OtogeChannel < ApplicationCable::Channel
         true
       when "GOOD"
         true
-      when "BAD"
-        false
       else
         false
     end
