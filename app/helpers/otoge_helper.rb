@@ -1,0 +1,2 @@
+module OtogeHelper
+end

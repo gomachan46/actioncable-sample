@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require cable
-//= require channels/sample
+//= require channels/otoge

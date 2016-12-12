@@ -66,7 +66,7 @@ class @Game
           if -0.2 <= @clearTime - _timing[@number] <= 0.2 then _judge.text = "COOL"
           else if -0.4 <= @clearTime - _timing[@number] <= 0.4 then _judge.text = "GOOD"
           else _judge.text = "BAD"
-          App.sample.hoge(_judge.text)
+          App.otoge.hoge(_judge.text)
   _proccesRootSceneFrame = ->
     if _status is "playing"
       if _isNoteGenerateTiming()

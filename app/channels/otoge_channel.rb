@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
-class SampleChannel < ApplicationCable::Channel
+class OtogeChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "sample_channel"
+    stream_from "otoge_channel"
   end
 
   def unsubscribed
@@ -9,6 +9,6 @@ class SampleChannel < ApplicationCable::Channel
   end
 
   def hoge(judge)
-    ActionCable.server.broadcast "sample_channel", judge: judge
+    ActionCable.server.broadcast "otoge_channel", judge: judge
   end
 end
