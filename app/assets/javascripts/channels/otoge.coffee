@@ -15,11 +15,17 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
       else
         $('#combo').text("0")
       $('#score').text(String(Number($('#score').text()) + Number(data.result.score)))
+    if data.start
+      $('#start').val("true")
     if data.finish
       $('#finish').text(data.finish)
 
   judge: (judge) ->
     @perform 'judge', judge: judge
+
+
+  start: ->
+    @perform 'start'
 
   finish: ->
     @perform 'finish', score: Number($('#score').text()), combo: Number($('#combo').text())

@@ -15,8 +15,14 @@ class @Game
     _game.preload("icon.png", "shadow.png")
     _game.start()
     _game.onload = ->
+      _game.rootScene.addEventListener "enterframe", (e)->
+        if $("#start").val() == "true"
+          _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
+          _status = "playing"
+          _yt.play()
       _game.rootScene.addEventListener "touchstart", (e)->
         if _yt.isReady()
+          App.otoge.start()
           _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
           _status = "playing"
           _yt.play()
