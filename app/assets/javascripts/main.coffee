@@ -64,14 +64,16 @@ class @Game
       @clear = true
     note.addEventListener "enterframe", ->
       _judge.text = $("#judge").text()
-      if _yt.getCurrentTime() > _timing[@number] + 1 then _game.rootScene.removeChild(@)
+      if _yt.getCurrentTime() > _timing[@number] + 0.3
+        _game.rootScene.removeChild(@)
+        App.otoge.judge("BAD")
       if @clear
         @opacity -= 0.2
         @scale(@scaleX + 0.05, @scaleY + 0.05)
         if @opacity <= 0
           _game.rootScene.removeChild(@)
-          if -0.2 <= @clearTime - _timing[@number] <= 0.2 then App.otoge.judge("COOL")
-          else if -0.4 <= @clearTime - _timing[@number] <= 0.4 then App.otoge.judge("GOOD")
+          if -0.1 <= @clearTime - _timing[@number] <= 0.1 then App.otoge.judge("COOL")
+          else if -0.2 <= @clearTime - _timing[@number] <= 0.2 then App.otoge.judge("GOOD")
           else App.otoge.judge("BAD")
   _proccesRootSceneFrame = ->
     if _status is "playing"
