@@ -19,12 +19,13 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
       user_result.append('<h1><span class="score">0</span>Pt</h1>')
       $('#user-results').append(user_result)
     if data.result
+      console.log data.result.uuid
       $('#' + data.result.uuid).find('.judge').text(data.result.judge)
       if data.result.continuous_combo
-        $('#' + data.result.uuid).find('.combo').text(String(Number($('#combo').text()) + 1))
+        $('#' + data.result.uuid).find('.combo').text(String(Number($('#' + data.result.uuid).find('.combo').text()) + 1))
       else
         $('#' + data.result.uuid).find('.combo').text("0")
-      $('#' + data.result.uuid).find('.score').text(String(Number($('#score').text()) + Number(data.result.score)))
+      $('#' + data.result.uuid).find('.score').text(String(Number($('#' + data.result.uuid).find('.score').text()) + Number(data.result.score)))
     if data.start
       $('#start').val(data.start)
     if data.finish
@@ -40,4 +41,4 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
     @perform 'start'
 
   finish: ->
-    @perform 'finish', score: Number($('#score').text()), combo: Number($('#combo').text())
+    @perform 'finish', score: Number($('#' + data.result.uuid).find('.score').text()), combo: Number($('#' + data.result.uuid).find('.combo').text())
