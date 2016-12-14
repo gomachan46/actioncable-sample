@@ -19,7 +19,6 @@ class @Game
         if _status == "init" && _yt.isReady() && $("#start").val()
           user_result = $('<div>')
           user_result.attr('id', $("#start").val())
-          user_result.append('<h1 class="finish">')
           user_result.append('<h1 class="judge">')
           user_result.append('<h1><span class="combo">0</span>COMBO</h1>')
           user_result.append('<h1><span class="score">0</span>Pt</h1>')

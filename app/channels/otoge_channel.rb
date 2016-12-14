@@ -1,6 +1,7 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class OtogeChannel < ApplicationCable::Channel
   def subscribed
+    stream_from "#{uuid}_channel"
     stream_from "otoge_channel"
   end
 
@@ -22,10 +23,10 @@ class OtogeChannel < ApplicationCable::Channel
 
   def finish(data)
     ActionCable.server.broadcast(
-      "otoge_channel",
+      "#{uuid}_channel",
       finish: {
         uuid: uuid,
-        result: data["score"] >= 10000 ? "success" : "failure"
+        result: data["my_score"] > data["rival_score"] ? "win!" : "lose..."
       }
     )
   end

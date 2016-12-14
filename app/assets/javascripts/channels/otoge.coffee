@@ -13,7 +13,6 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
     if data.init
       user_result = $('<div>')
       user_result.attr('id', data.init)
-      user_result.append('<h1 class="finish">')
       user_result.append('<h1 class="judge">')
       user_result.append('<h1><span class="combo">0</span>COMBO</h1>')
       user_result.append('<h1><span class="score">0</span>Pt</h1>')
@@ -29,7 +28,7 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
     if data.start
       $('#start').val(data.start)
     if data.finish
-      $('#' + data.finish.uuid).find('.finish').text(data.finish)
+      $('#finish').text(data.finish.result)
 
   init: ->
     @perform 'init'
@@ -41,4 +40,4 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
     @perform 'start'
 
   finish: ->
-    @perform 'finish', score: Number($('#' + data.result.uuid).find('.score').text()), combo: Number($('#' + data.result.uuid).find('.combo').text())
+    @perform 'finish', my_score: Number($('.score:first').text()), rival_score: Number($('.score:last').text())
