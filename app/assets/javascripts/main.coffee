@@ -72,7 +72,7 @@ class @Game
         @scale(@scaleX + 0.05, @scaleY + 0.05)
         if @opacity <= 0
           _game.rootScene.removeChild(@)
-          if -0.1 <= @clearTime - _timing[@number] <= 0.1 then App.otoge.judge("COOL")
+          if -0.05 <= @clearTime - _timing[@number] <= 0.05 then App.otoge.judge("COOL")
           else if -0.2 <= @clearTime - _timing[@number] <= 0.2 then App.otoge.judge("GOOD")
           else App.otoge.judge("BAD")
   _proccesRootSceneFrame = ->
