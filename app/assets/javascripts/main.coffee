@@ -5,23 +5,23 @@ class @Game
   _judge = null
   _timing = [6.14,7.486,8.155,9.977,10.377,11.611,12.062,13.583,14.223,15.059,16.241,17.425,20.186,21.593,22.313,23.123,24.297,25.113,26.148,27.294,28.103,30.910,31.601,32.305,33.024,34.054,35.360,36.140,37.028,38.402,39.129,40.354,41.051,42.233,43.043,44.261,45.705,46.448,47.416,48.407,50.158,51.310,52.363,53.031,54.417,55.288,56.472,57.190,58.110,59.095,60.776, 61.993, 62.370, 63.072, 64.493, 65.111, 66.414, 67.192, 68.891, 69.209, 70.056, 71.111, 72.861, 73.263, 74.639, 75.090, 75.941, 76.472, 76.992]
   _timingIndex = 0
-  _status = "stop"
+  _status = "init"
   _endTime = 80
 
   constructor : (parms)->
     enchant()
     _game = new Core(800, 600)
-    _game.fps = 30
+    _game.fps = 60
     _game.preload("icon.png", "shadow.png")
     _game.start()
     _game.onload = ->
       _game.rootScene.addEventListener "enterframe", (e)->
-        if $("#start").val() == "true"
+        if _status == "init" && _yt.isReady() && $("#start").val() == "true"
           _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
           _status = "playing"
           _yt.play()
       _game.rootScene.addEventListener "touchstart", (e)->
-        if _yt.isReady()
+        if _status == "init" && _yt.isReady()
           App.otoge.start()
           _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
           _status = "playing"
