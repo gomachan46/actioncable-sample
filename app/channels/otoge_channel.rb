@@ -8,22 +8,33 @@ class OtogeChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
+  def init
+    ActionCable.server.broadcast "otoge_channel", init: uuid
+  end
+
   def judge(data)
     ActionCable.server.broadcast "otoge_channel", result: result(data["judge"])
   end
 
   def start
-    ActionCable.server.broadcast "otoge_channel", start: true
+    ActionCable.server.broadcast "otoge_channel", start: uuid
   end
 
   def finish(data)
-    ActionCable.server.broadcast "otoge_channel", finish: data["score"] >= 10000 ? "success" : "failure"
+    ActionCable.server.broadcast(
+      "otoge_channel",
+      finish: {
+        uuid: uuid,
+        result: data["score"] >= 10000 ? "success" : "failure"
+      }
+    )
   end
 
   private
 
   def result(judge)
     {
+        uuid: uuid,
         judge: judge,
         score: score(judge),
         continuous_combo: continuous_combo?(judge)

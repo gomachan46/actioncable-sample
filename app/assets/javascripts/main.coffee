@@ -16,7 +16,14 @@ class @Game
     _game.start()
     _game.onload = ->
       _game.rootScene.addEventListener "enterframe", (e)->
-        if _status == "init" && _yt.isReady() && $("#start").val() == "true"
+        if _status == "init" && _yt.isReady() && $("#start").val()
+          user_result = $('<div>')
+          user_result.attr('id', $("#start").val())
+          user_result.append('<h1 class="finish">')
+          user_result.append('<h1 class="judge">')
+          user_result.append('<h1><span class="combo">0</span>COMBO</h1>')
+          user_result.append('<h1><span class="score">0</span>Pt</h1>')
+          $('#user-results').append(user_result)
           _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
           _status = "playing"
           _yt.play()
@@ -43,6 +50,7 @@ class @Game
       shadow.x = 100
       shadow.y = 380
       _game.rootScene.addChild(shadow)
+      App.otoge.init()
 
   _isNoteGenerateTiming = ->
     if _timing[_timingIndex]?
@@ -63,18 +71,19 @@ class @Game
       @clearTime = _yt.getCurrentTime()
       @clear = true
     note.addEventListener "enterframe", ->
-      _judge.text = $("#judge").text()
       if _yt.getCurrentTime() > _timing[@number] + 0.3
         _game.rootScene.removeChild(@)
-        App.otoge.judge("BAD")
+        _judge.text = "BAD"
+        App.otoge.judge(_judge.text)
       if @clear
         @opacity -= 0.2
         @scale(@scaleX + 0.05, @scaleY + 0.05)
         if @opacity <= 0
           _game.rootScene.removeChild(@)
-          if -0.05 <= @clearTime - _timing[@number] <= 0.05 then App.otoge.judge("COOL")
-          else if -0.2 <= @clearTime - _timing[@number] <= 0.2 then App.otoge.judge("GOOD")
-          else App.otoge.judge("BAD")
+          if -0.05 <= @clearTime - _timing[@number] <= 0.05 then _judge.text = "COOL"
+          else if -0.2 <= @clearTime - _timing[@number] <= 0.2 then _judge.text = "GOOD"
+          else _judge.text = "BAD"
+          App.otoge.judge(_judge.text)
   _proccesRootSceneFrame = ->
     if _status is "playing"
       if _isNoteGenerateTiming()
