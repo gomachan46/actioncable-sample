@@ -25,6 +25,10 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
       $('#start').val(data.start)
     if data.finish
       $('#finish').text(data.finish.result)
+      if data.finish.result is "win!"
+        login = $('<a href="/">')
+        login.append('<img src="login_logo.png" />')
+        $('#login').append(login)
 
   init: ->
     @perform 'init'

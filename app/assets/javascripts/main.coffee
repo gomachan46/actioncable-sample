@@ -50,7 +50,7 @@ class @Game
     _game.start()
     _game.onload = ->
       _game.rootScene.addEventListener "enterframe", (e)->
-        if _status == "init" && $("#start").val()
+        if _status is "init" && $("#start").val()
           user_result = $('<div>')
           user_result.attr('id', $("#start").val())
           user_result.append('<h1><span class="combo">0</span>COMBO</h1>')
@@ -61,7 +61,7 @@ class @Game
           _game.assets[song].play()
       _game.rootScene.addEventListener "touchstart", (e)->
 #        console.log(_game.assets[song].currentTime)
-        if _status == "init"
+        if _status is "init"
           App.otoge.start()
           _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
           _status = "playing"
@@ -121,5 +121,4 @@ class @Game
           App.otoge.finish()
           _game.assets[song].stop()
           _status = "end"
-
 new Game()
