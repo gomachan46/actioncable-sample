@@ -44,7 +44,7 @@ class @Game
 
   constructor : (parms)->
     enchant()
-    _game = new Core(800, 600)
+    _game = new Core(300, 600)
     _game.fps = 60
     _game.preload("login_logo.png", "login_logo_gray.png", song)
     _game.start()
@@ -53,7 +53,6 @@ class @Game
         if _status == "init" && $("#start").val()
           user_result = $('<div>')
           user_result.attr('id', $("#start").val())
-          user_result.append('<h1 class="judge">')
           user_result.append('<h1><span class="combo">0</span>COMBO</h1>')
           user_result.append('<h1><span class="score">0</span>Pt</h1>')
           $('#user-results').append(user_result)

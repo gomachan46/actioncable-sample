@@ -6,11 +6,17 @@
     <input class="form-control" type="text" name="user[username]" id="user_username"/>
   </div>
 
-  <div id="enchant-stage"></div>
+  <div class="row">
+    <div class="col-md-6">
+      <div id="enchant-stage"></div>
+    </div>
+    <div class="col-md-6">
+      <h1 id="finish"></h1>
+      <div id="user-results"></div>
+    </div>
+  </div>
 </div>
 <input type="hidden" id="start" value=""/>
-<h1 id="finish"></h1>
-<div id="user-results"></div>
 
 <%= javascript_include_tag 'enchant' %>
 <%= javascript_include_tag 'main' %>

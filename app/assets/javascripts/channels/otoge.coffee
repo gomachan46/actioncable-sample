@@ -11,12 +11,11 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
     if data.init
       user_result = $('<div>')
       user_result.attr('id', data.init)
-      user_result.append('<h1 class="judge">')
       user_result.append('<h1><span class="combo">0</span>COMBO</h1>')
       user_result.append('<h1><span class="score">0</span>Pt</h1>')
+      user_result.append('<br />')
       $('#user-results').append(user_result)
     if data.result
-      $('#' + data.result.uuid).find('.judge').text(data.result.judge)
       if data.result.continuous_combo
         $('#' + data.result.uuid).find('.combo').text(String(Number($('#' + data.result.uuid).find('.combo').text()) + 1))
       else
