@@ -7,8 +7,6 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    console.log data
-
     # カオスになるの目に見えててワロリンactionとかでふりわけるのかな
     if data.init
       user_result = $('<div>')
@@ -18,7 +16,6 @@ App.otoge = App.cable.subscriptions.create "OtogeChannel",
       user_result.append('<h1><span class="score">0</span>Pt</h1>')
       $('#user-results').append(user_result)
     if data.result
-      console.log data.result.uuid
       $('#' + data.result.uuid).find('.judge').text(data.result.judge)
       if data.result.continuous_combo
         $('#' + data.result.uuid).find('.combo').text(String(Number($('#' + data.result.uuid).find('.combo').text()) + 1))

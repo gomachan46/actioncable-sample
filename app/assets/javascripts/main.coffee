@@ -61,7 +61,7 @@ class @Game
           _status = "playing"
           _game.assets[song].play()
       _game.rootScene.addEventListener "touchstart", (e)->
-        console.log(_game.assets[song].currentTime)
+#        console.log(_game.assets[song].currentTime)
         if _status == "init"
           App.otoge.start()
           _game.rootScene.addEventListener "enterframe", _proccesRootSceneFrame
