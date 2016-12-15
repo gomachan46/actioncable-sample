@@ -30,7 +30,7 @@ class @Game
   ]
   _timingIndex = 0
   _status = "init"
-  _endTime = 100
+  _endTime = 30
   song = "donguri.wav"
 
   constructor : (parms)->
